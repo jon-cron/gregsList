@@ -1,25 +1,28 @@
-import { EventEmitter } from "./Utils/EventEmitter.js"
-import { isValidProp } from "./Utils/isValidProp.js"
-import { loadState } from "./Utils/Store.js"
+import { EventEmitter } from "./Utils/EventEmitter.js";
+import { isValidProp } from "./Utils/isValidProp.js";
+import { loadState } from "./Utils/Store.js";
 
 class AppState extends EventEmitter {
-
   /** @type {import('./Models/Car').Car[]} */
-  cars = []
+  cars = [];
 
   /** @type {import('./Models/Car').Car|null} */
-  activeCar = null
+  activeCar = null;
+  /** @type {import('./Models/House').House[]} */
+  houses = [];
+  /** @type {import('./Models/House').House|null} */
+  activeHouse = null;
 }
 
 export const appState = new Proxy(new AppState(), {
   get(target, prop) {
-    isValidProp(target, prop)
-    return target[prop]
+    isValidProp(target, prop);
+    return target[prop];
   },
   set(target, prop, value) {
-    isValidProp(target, prop)
-    target[prop] = value
-    target.emit(prop, value)
-    return true
-  }
-})
+    isValidProp(target, prop);
+    target[prop] = value;
+    target.emit(prop, value);
+    return true;
+  },
+});
