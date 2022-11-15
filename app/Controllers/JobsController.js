@@ -1,17 +1,19 @@
+import { appState } from "../AppState.js";
 import { jobsService } from "../Services/JobsService.js";
 import { Pop } from "../Utils/Pop.js";
+import { setHTML } from "../Utils/Writer.js";
 
 function _drawJobs() {
-  console.log("draws are connected");
+  let template = "";
+  appState.jobs.forEach((j) => (template += j.JobTemplate));
+  setHTML("listings", template);
 }
 
-function _drawJobsForm() {
-  console.log("draws are connected");
-}
+function _drawJobsForm() {}
 
 export class JobsController {
   constructor() {
-    console.log("controller is working");
+    this.getJobs();
   }
   async getJobs() {
     try {
@@ -22,8 +24,10 @@ export class JobsController {
     }
   }
   showJobs() {
-    this.getJobs();
     _drawJobs();
     _drawJobsForm();
+  }
+  apply() {
+    Pop.error("Unqualified");
   }
 }
