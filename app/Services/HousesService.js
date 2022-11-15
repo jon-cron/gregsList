@@ -17,7 +17,7 @@ class HousesService {
   }
   async removeHouse(id) {
     const res = await axios.delete(
-      "https://bcw-sandbox.herokuapp.com/api/houses" + id
+      "https://bcw-sandbox.herokuapp.com/api/houses/" + id
     );
     console.log("This house was remove:", res.data);
   }
