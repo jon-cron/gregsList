@@ -31,7 +31,7 @@ export class House {
             <button  class="btn btn-info"  onclick="app.housesController.setActive('${this.id}')">
             <i class="mdi mdi-pencil"></i>
             </button>
-            <button onclick="app.housesController.removeHouse('${this.id}')" title="Delete car!" class="btn btn-danger">
+            <button onclick="app.housesController.removeHouse('${this.id}')" title="Delete House!" class="btn btn-danger">
               <i class="mdi mdi-delete"></i>
             </button>
               </div>

@@ -20,6 +20,7 @@ class HousesService {
       "https://bcw-sandbox.herokuapp.com/api/houses/" + id
     );
     console.log("This house was remove:", res.data);
+    appState.houses = appState.houses.filter((h) => h.id != id);
   }
 }
 
