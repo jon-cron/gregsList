@@ -8,6 +8,19 @@ class HousesService {
     appState.houses = res.data.map((h) => new House(h));
     console.log("houses added to appState", appState.houses);
   }
+  async createHouse(houseData) {
+    const res = await axios.post(
+      "https://bcw-sandbox.herokuapp.com/api/houses",
+      houseData
+    );
+    appState.houses = [...appState.houses, new House(res.data)];
+  }
+  async removeHouse(id) {
+    const res = await axios.delete(
+      "https://bcw-sandbox.herokuapp.com/api/houses" + id
+    );
+    console.log("This house was remove:", res.data);
+  }
 }
 
 export const housesService = new HousesService();

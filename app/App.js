@@ -3,7 +3,7 @@ import { HousesController } from "./Controllers/HousesController.js";
 
 class App {
   housesController = new HousesController();
-  // carsController = new CarsController();
+  carsController = new CarsController();
 }
 
 window["app"] = new App();

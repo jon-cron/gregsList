@@ -1,6 +1,7 @@
 import { appState } from "../AppState.js";
 import { House } from "../Models/House.js";
 import { housesService } from "../Services/HousesService.js";
+import { getFormData } from "../Utils/FormHandler.js";
 import { Pop } from "../Utils/Pop.js";
 import { setHTML } from "../Utils/Writer.js";
 
@@ -34,10 +35,39 @@ export class HousesController {
   setActiveHouse(id) {
     console.log(id);
   }
-  removeHouse(id) {
-    console.log("remove", id);
+  async removeHouse(id) {
+    try {
+      console.log("deleting", id);
+      if (
+        await Pop.confirm(
+          "Are you sure?",
+          "Someone spent a lot of time browsing the internet for that perfect picture",
+          "yeah toss it",
+          "warning"
+        )
+      ) {
+        await housesService.removeHouse(id);
+      }
+    } catch (error) {
+      Pop.error(error.message);
+      console.error(error);
+    }
+  }
+  async createHouse() {
+    try {
+      window.event.preventDefault();
+      const form = window.event.target;
+      let houseData = getFormData(form);
+      console.log(houseData);
+      form.reset();
+      await housesService.createHouse(houseData);
+    } catch (error) {
+      Pop.toast(error);
+      console.log("error", error);
+    }
   }
   showHouses() {
-    console.log("i work");
+    _drawHouseForm();
+    _drawHouses();
   }
 }

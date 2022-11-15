@@ -6,6 +6,7 @@ export class House {
     this.imgUrl = data.imgUrl || "";
     this.price = data.price || "";
     this.description = data.description || "";
+    this.year = data.year || "";
     this.id = data.id;
   }
   get HouseListTemplate() {
@@ -47,19 +48,19 @@ export class House {
       house.id ? `editHouse('${house.id}')` : "createHouse()"
     }">
       <div class="form-floating mb-3">
-        <input required type="number" class="form-control" id="" placeholder="Number of Beds" name="bedroom" value="${
+        <input required type="number" class="form-control" id="" placeholder="Number of Beds" name="bedrooms" value="${
           house.bedrooms
         }">
         <label for="house-model" >Beds</label>
       </div>
       <div class="form-floating mb-3">
-        <input required type="number" class="form-control" id="" placeholder="Number of Baths" name="bathroom" value="${
+        <input required type="number" class="form-control" id="" placeholder="Number of Baths" name="bathrooms" value="${
           house.bathrooms
         }">
         <label for="house-model" >Baths</label>
       </div>
       <div class="form-floating mb-3">
-        <input required type="url" class="form-control" id="house-imgUrl" placeholder="House Image" name="imgUrl" value="${
+        <input required type="url" class="form-control" id="house-img" placeholder="Image" name="imgUrl" value="${
           house.imgURL
         }">
         <label for="house-img">Image</label>
@@ -70,8 +71,20 @@ export class House {
         }">
         <label for="house-price">Price</label>
       </div>
+      <div class="form-floating mb-3">
+        <input required type="number" class="form-control" id="house-year" placeholder="Year" name="year" value="${
+          house.year
+        }">
+        <label for="house-year">Year</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input required type="number" class="form-control" id="house-levels" placeholder="Levels" name="levels" value="${
+          house.levels
+        }">
+        <label for="house-levels">Levels</label>
+      </div>
       <div class="form-floating">
-        <textarea class="form-control" placeholder="Leave a description here" id="house-description"
+        <textarea class="form-control" placeholder="Leave a description here" id="description"
           name="description" >${house.description}</textarea>
         <label for="description">Description</label>
       </div>
