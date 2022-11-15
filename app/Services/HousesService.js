@@ -22,6 +22,20 @@ class HousesService {
     console.log("This house was remove:", res.data);
     appState.houses = appState.houses.filter((h) => h.id != id);
   }
+  setActive(id) {
+    let house = appState.houses.find((h) => h.id == id);
+    appState.activeHouse = house;
+    console.log(appState.activeHouse);
+  }
+  async editHouse(houseData, id) {
+    const res = await axios.put(
+      "https://bcw-sandbox.herokuapp.com/api/houses/" + id,
+      houseData
+    );
+    let index = appState.houses.findIndex((h) => h.id == id);
+    appState.houses.splice(index, 1, new House(res.data));
+    appState.emit("houses");
+  }
 }
 
 export const housesService = new HousesService();

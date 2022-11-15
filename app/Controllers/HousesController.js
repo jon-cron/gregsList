@@ -17,10 +17,10 @@ function _drawHouseForm() {
 
 export class HousesController {
   constructor() {
-    this.getHouses();
     appState.on("houses", _drawHouses);
-    _drawHouses();
-    _drawHouseForm();
+    appState.on("activeHouse", _drawHouseForm);
+    // _drawHouses();
+    // _drawHouseForm();
   }
   async getHouses() {
     try {
@@ -67,7 +67,23 @@ export class HousesController {
     }
   }
   showHouses() {
+    this.getHouses();
     _drawHouseForm();
     _drawHouses();
+  }
+  setActive(id) {
+    housesService.setActive(id);
+  }
+  async editHouse(id) {
+    try {
+      window.event.preventDefault();
+      const form = window.event.target;
+      const houseData = getFormData(form);
+      console.log("controller editing", houseData);
+      await housesService.editHouse(houseData, id);
+    } catch (error) {
+      Pop.toast("error", error);
+      console.log(error);
+    }
   }
 }

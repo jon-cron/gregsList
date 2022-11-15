@@ -61,7 +61,7 @@ export class House {
       </div>
       <div class="form-floating mb-3">
         <input required type="url" class="form-control" id="house-img" placeholder="Image" name="imgUrl" value="${
-          house.imgURL
+          house.imgUrl
         }">
         <label for="house-img">Image</label>
       </div>

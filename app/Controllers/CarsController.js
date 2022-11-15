@@ -21,8 +21,7 @@ export class CarsController {
   constructor() {
     appState.on("cars", _drawCars);
     appState.on("activeCar", _drawCarForm);
-    this.getCars();
-    _drawCarForm();
+    // _drawCarForm();
   }
 
   async getCars() {
@@ -88,6 +87,7 @@ export class CarsController {
     }
   }
   showCars() {
+    this.getCars();
     _drawCarForm();
     _drawCars();
   }
